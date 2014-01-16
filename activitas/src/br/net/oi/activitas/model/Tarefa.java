@@ -1,4 +1,4 @@
-package br.net.oi.activitas.crud;
+package br.net.oi.activitas.model;
 
 import java.sql.Date;
 
