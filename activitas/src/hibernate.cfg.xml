@@ -34,8 +34,10 @@
         <!-- mapping files -->
         <mapping class="br.net.oi.activitas.model.Tarefa"/>
         <mapping class="br.net.oi.activitas.model.Demanda"/>
-        
-
+        <mapping class="br.net.oi.activitas.model.Usuario"/>
+        <mapping class="br.net.oi.activitas.model.Departamento"/>
+        <mapping class="br.net.oi.activitas.model.Grupo"/>
+		<mapping class="br.net.oi.activitas.model.Sistema"/>
 
     </session-factory>
 
