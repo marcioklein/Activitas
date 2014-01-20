@@ -1,32 +1,100 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:p="http://primefaces.org/ui">
-<h:head>
-<title>
-Cadastro de Usuários
-</title>
-</h:head>
-<h:body>
+<ui:composition template="/templates/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<ui:define name="content">
+	  
 <h1>Cadastro de Usuários</h1>
 <hr />
-<h:form>
-	<h:messages />
-	<h:panelGrid columns="2" >
-		<h:outputLabel value="Nome:" for="nome" />
-		<h:inputText id="nome" label="Nome" value="#{usuarioBean.nome}" required="true" />
-		<h:outputLabel value="e-Mail:" for="email" />
-		<h:inputText id="email" label="e-Mail" value="#{usuarioBean.email}" />
-		<h:outputLabel value="Senha:" for="senha" />
-		<h:inputSecret id="senha" label="Senha" value="#{usuarioBean.senha}" required="true"/>
-		<h:outputLabel value="Confirmar Senha:" for="confirmarsenha" />
-		<h:inputSecret id="confirmarsenha" label="Confirmar Senha" value="#{usuarioBean.confirmaSenha}" required="true"/>
-		<h:outputText />
-		<h:commandButton action="#{usuarioBean.salvar}" value="Salvar"></h:commandButton>
-	</h:panelGrid>	
+<h:form id="cadastro">
+<p:panel id="panel">
+<p:growl id="growl" showDetail="true" sticky="true" />
+<h:inputHidden value="#{usuarioBean.usuario.id}"/>
+<h:inputHidden value="#{usuarioBean.usuario.ativo}"/>
+<p:panelGrid>  
+
+    <f:facet name="header">  
+        <p:row>  
+            <p:column colspan="4">Cadastro de Usuários</p:column>  
+        </p:row>         
+    </f:facet>  
+  
+  	<p:row>
+  		<p:column>
+  			<h:outputLabel for="nome" value="Nome: *" />
+  		</p:column>
+  		<p:column colspan="3">
+    		<p:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" label="Nome" size="65" requiredMessage="Por favor,digite o nome"/>
+    	</p:column>
+  	</p:row>
+  	
+  	<p:row>
+  		<p:column>
+  			<h:outputLabel for="login" value="Login: *" />
+  		</p:column>
+  		<p:column>
+  			<p:inputText id="login" value="#{usuarioBean.usuario.login}" label="Login" required="true" requiredMessage="Por favor,digite o login"/> 
+  		</p:column>
+  		<p:column>
+  			<h:outputLabel for="email" value="E-mail: *" /> 
+  		</p:column>
+  		<p:column>
+  			<p:inputText id="email" value="#{usuarioBean.usuario.email}" required="true" label="Email" requiredMessage="Por favor,digite o e-mail" validatorMessage="E-mail inválido">
+  				<f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+  			</p:inputText>
+  			<p:message for="email" id="msgEmail" display="icon"/> 
+  		</p:column>
+  	</p:row>
+  	
+  	<p:row>
+  		<p:column>
+  			<h:outputLabel for="cpf" value="CPF: *" />
+  		</p:column>
+  		<p:column>
+  			<p:inputText id="cpf" value="#{usuarioBean.usuario.cpf}" label="CPF" required="true" requiredMessage="Por favor,digite o CPF" size="11" maxlength="11"/> 
+  		</p:column>
+  		<p:column>
+  			<h:outputLabel for="telefone" value="Telefone: *" /> 
+  		</p:column>
+  		<p:column>
+  			<p:inputText id="telefone" value="#{usuarioBean.usuario.telefone}" required="true" label="Telefone" requiredMessage="Por favor,digite o telefone"/>
+  		</p:column>
+  	</p:row>
+  	
+  	<p:row>
+  		<p:column>
+  			<h:outputLabel for="senha" value="Senha: *" />
+  		</p:column>
+  		<p:column>
+  			<p:password id="senha" value="#{usuarioBean.usuario.senha}"  match="confirmarSenha" feedback="true" label="Senha"  
+                        promptLabel="Entre com a senha" weakLabel="Fraca"  
+                        goodLabel="Normal" strongLabel="Forte" />
+  		</p:column>
+  		<p:column>
+  			<h:outputLabel for="confirmarSenha" value="Senha: *" /> 
+  		</p:column>
+  		<p:column>
+  			<p:password id="confirmarSenha" value="#{usuarioBean.confirmarSenha}" required="true" label="Confirmar Senha"/>
+  		</p:column>
+  	</p:row>
+  	   
+    <f:facet name="footer">  
+    	<p:row>  
+            <p:column colspan="4">
+            	<h:commandButton action="#{usuarioBean.salvar}" value="Salvar" icon="ui-icon-check" style="margin:0"/>
+            </p:column>  
+        </p:row>          
+    </f:facet>  
+
+</p:panelGrid>  
+</p:panel>
 </h:form>
+
 <hr />
-</h:body>
-</html>
+</ui:define>
+</ui:composition>

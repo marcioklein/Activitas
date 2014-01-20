@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Title</title>
+</h:head>
+<h:body>
+	<h:form id="formMenu">
+		<p:growl id="messages" />
+		<p:commandButton action="#{usuarioBean.novo}" value="Usuarios" ajax="false" icon="ui-icon-person"/>
+		<!-- <p:menu style="width:200px">
+		<p:submenu label="Ações" icon="ui-icon-gear">  
+            <p:menuitem value="Alterar Senha" actionListener="#{controleMenu.telaAltSenhaca}" ajax="false" icon="ui-icon-person"/>
+        </p:submenu> 
+        <p:submenu label="Cadastro" icon="ui-icon-gear">  
+            <p:menuitem value="Cadastro de Usuário" actionListener="#{controleMenu.telaUsuario}" ajax="false" icon="ui-icon-disk"/> 
+            <p:menuitem value="Cadastro de Setor" actionListener="#{controleMenu.telaSetor}" ajax="false" icon="ui-icon-disk" /> 
+        </p:submenu> 
+        <p:submenu label="Pesquisa" icon="ui-icon-gear">  
+            <p:menuitem value="Visualizar Compras" actionListener="#{controleMenu.telaCompraca}" ajax="false" icon="ui-icon-disk"/> 
+            <p:menuitem value="Visualizar Solicitações" actionListener="#{controleMenu.telaSolicitacaoca}" ajax="false" icon="ui-icon-disk" /> 
+        </p:submenu>
+        <p:submenu label="Relatório" icon="ui-icon-gear">  
+            <p:menuitem value="Emitir Relatório de Consumo por item" action="#{controleRelatorio.relatorioConsumoMedio}" ajax="false" icon="ui-icon-disk"/> 
+            <p:menuitem value="Emitir relatório de Estoque Mínimo" action="#{controleRelatorioEstoqueMinimo.relatorioEstoqueMinimo}" ajax="false" icon="ui-icon-disk" /> 
+            <p:menuitem value="Emitir Relatório de Distribuição" action="#{controleRelatorio.relatorioDistribuicao}" ajax="false" icon="ui-icon-disk"/>
+            <p:menuitem value="Emitir Relatório de Distribuição" action="#{controleMenu.telaRelDistca}" ajax="false" icon="ui-icon-disk"/>
+        </p:submenu> 
+        <p:submenu label="Sair" icon="ui-icon-gear"> 
+	        <p:menuitem value="Sair" actionListener="#{controleLogin.logoff}"
+					oncomplete=" handleLogOutRequest(xhr, status, args);"
+					icon="ui-icon-power" />
+		</p:submenu>
+    </p:menu>  -->
+	</h:form>
+	<script type="text/javascript">
+		function handleLogOutRequest(xhr, status, args) {
+			if (args.loggedOut) {
+				location.href = args.pagina;
+			}
+		}
+	</script>
+</h:body>
+</html>

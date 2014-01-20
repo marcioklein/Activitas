@@ -28,7 +28,6 @@ public class Demanda implements Serializable {
 	@GeneratedValue
 	@Column
 	private Integer id;
-	
 	@Column
 	private String demanda;
 	@Column
@@ -37,13 +36,13 @@ public class Demanda implements Serializable {
 	@Column
 	private String descricao;
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="sistema")
 	private Sistema sistema;
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="solicitante")
 	private Usuario solicitante;
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="aprovador")
 	private Usuario aprovador;
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -55,10 +54,10 @@ public class Demanda implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataRequerida;
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="grupo")
 	private Grupo grupo;
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="departamento")
 	private Departamento departamento;
 	public Integer getId() {
 		return id;

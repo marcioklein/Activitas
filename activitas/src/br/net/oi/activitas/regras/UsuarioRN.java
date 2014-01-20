@@ -17,9 +17,15 @@ public class UsuarioRN {
 	public Usuario buscarPorLogin(String login){
 		return this.usuarioDao.buscarPorLogin(login);
 	}
+	public void salvar(Usuario usuario,Usuario usuarioLogado){
+		usuario.setDepartamento(usuarioLogado.getDepartamento());
+		this.salvar(usuario);
+	}
 	public void salvar(Usuario usuario){
 		Integer id = usuario.getId();
 		if(id==null || id==0){
+			//todo usuario novo deve ser criado ativo
+			usuario.setAtivo(true);
 			this.usuarioDao.salvar(usuario);
 		}else{
 			this.usuarioDao.atualizar(usuario);

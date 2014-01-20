@@ -1,0 +1,21 @@
+<ui:composition template="/templates/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<ui:define name="content">
+	  
+<h1>Cadastro de Usuários</h1>
+<hr />
+<p:growl id="growl" showDetail="true" sticky="true" />
+<p>Usuário 
+<h:outputText value="#{usuarioBean.usuario.nome}" /> criado com sucesso!</p>
+
+<a href="usuario.jsf">VOLTAR</a>
+
+<hr />
+</ui:define>
+</ui:composition>

@@ -38,10 +38,18 @@ public class Usuario implements Serializable {
 	@Column
 	private String senha;
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="departamento")
 	private Departamento departamento;
+	@Column
+	private Boolean ativo;
 	
 	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
 	public Departamento getDepartamento() {
 		return departamento;
 	}
@@ -52,6 +60,7 @@ public class Usuario implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((ativo == null) ? 0 : ativo.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result
 				+ ((departamento == null) ? 0 : departamento.hashCode());
@@ -73,6 +82,11 @@ public class Usuario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
+		if (ativo == null) {
+			if (other.ativo != null)
+				return false;
+		} else if (!ativo.equals(other.ativo))
+			return false;
 		if (cpf == null) {
 			if (other.cpf != null)
 				return false;
