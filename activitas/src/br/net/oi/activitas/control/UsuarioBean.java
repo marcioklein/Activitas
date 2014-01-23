@@ -1,5 +1,7 @@
 package br.net.oi.activitas.control;
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -12,6 +14,14 @@ import br.net.oi.activitas.regras.UsuarioRN;
 public class UsuarioBean {
 	private Usuario usuario = new Usuario();
 	private String confirmarSenha;
+	private List<Usuario> lista;
+	public List<Usuario> getLista() {
+		if(this.lista==null){
+			UsuarioRN usuarioRN = new UsuarioRN();
+			this.lista = usuarioRN.listar();
+		}
+		return lista;
+	}
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -50,5 +60,17 @@ public class UsuarioBean {
 		FacesMessage facesMessage = new FacesMessage("Usu‡rio "+this.usuario.getLogin()+" salvo com sucesso!");
 		context.addMessage(null, facesMessage);
 		return "usuarioSucesso";
+	}
+	public String editar(){
+		this.confirmarSenha = this.usuario.getSenha();
+		return "usuario";
+	}
+	public String excluir(){
+		UsuarioRN usuarioRN = new UsuarioRN();
+		usuarioRN.excluir(this.usuario);
+		this.lista = null;
+		//this.getLista();
+		//a lista nao esta atualizando
+		return null;
 	}
 }
