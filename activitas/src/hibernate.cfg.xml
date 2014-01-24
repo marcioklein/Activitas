@@ -12,11 +12,12 @@
         <!-- <property name="connection.datasource">java:/comp/env/jdbc/MyDB</property> -->
         <!-- <property name="dialect">org.hibernate.dialect.MySQLDialect</property> -->
         <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!-- <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost/activitas</property>
         <property name="connection.username">activitas</property>
-  		<property name="connection.password">activitas</property>
+  		<property name="connection.password">activitas</property> -->
   		<property name="current_session_context_class">thread</property>
+  		<property name="connection.datasource">java:/comp/env/jdbc/activitasDB</property>
   		
   		<property name="c3po.min_size">5</property>
 	  	<property name="c3po.max_size">20</property>

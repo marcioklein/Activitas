@@ -44,9 +44,9 @@
         </p:column>
         
         <p:column>
-        	<p:commandLink action="#{usuarioBean.excluir}" onclick="if(!confirm('Confirma a exclusão do usuário #{usuario.nome} ?')) return false;" styleClass="ui-icon ui-icon-trash">
+        	<h:commandLink action="#{usuarioBean.excluir}" onclick="if(!confirm('Confirma a exclusão do usuário #{usuario.nome} ?')) return false;" styleClass="ui-icon ui-icon-trash">
         		<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}"></f:setPropertyActionListener>
-        	</p:commandLink>
+        	</h:commandLink>
         </p:column>
     </p:dataTable>  
 </h:form>  
