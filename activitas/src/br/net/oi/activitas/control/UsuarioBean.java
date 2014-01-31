@@ -73,4 +73,14 @@ public class UsuarioBean {
 		//a lista nao esta atualizando
 		return null;
 	}
+	public String atribuiPermissao(Usuario usuario,String permissao){
+		this.usuario = usuario;
+		java.util.Set<String> permissoes = this.usuario.getPermissao();
+		if(permissoes.contains(permissao)){
+			permissoes.remove(permissao);
+		}else{
+			permissoes.add(permissao);
+		}
+		return null;
+	}
 }

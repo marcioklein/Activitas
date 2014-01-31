@@ -37,6 +37,18 @@
             <p:commandLink styleClass="#{usuario.ativo? 'ui-icon ui-icon-circle-check' : 'ui-icon ui-icon-circle-close'}"/>
         </p:column> 
         
+        <p:column headerText="Permissões">
+        	<p:commandLink action="#{usuarioBean.atribuiPermissao(usuario , 'ROLE_SOLICITANTE')}" title="Permissão Solicitante"
+        	styleClass="ui-icon ui-icon-person">
+        	</p:commandLink>
+        	<p:commandLink action="#{usuarioBean.atribuiPermissao(usuario , 'ROLE_EXECUTOR')}" title="Permissão Executor"
+        	styleClass="ui-icon ui-icon-wrench">
+        	</p:commandLink>
+        	<p:commandLink action="#{usuarioBean.atribuiPermissao(usuario , 'ROLE_ADMINISTRADOR')}" title="Permissão Administrador"
+        	styleClass="ui-icon ui-icon-key">
+        	</p:commandLink>
+        </p:column>
+        
         <p:column>
         	<p:commandLink action="#{usuarioBean.editar}" styleClass="ui-icon ui-icon-pencil" >
         		<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}"/>

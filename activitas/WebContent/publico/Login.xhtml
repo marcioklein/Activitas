@@ -1,0 +1,45 @@
+ <ui:composition template="/templates/layoutLogin.xhtml"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:c="http://java.sun.com/jsp/jstl/core">
+     
+    <ui:define name="loginTemplate">    
+         <h:form id="formLogin" styleClass="loginPanelStyle">
+                 <p:growl id="msgs" showDetail="true" sticky="false" />                  
+                 <p:panel header="Activitas">  
+                    <h:panelGrid columns="2" cellpadding="5">  
+                        <h:outputLabel for="cpf" value="Usuário: " />  
+                        <p:inputText value=""   
+                                     id="cpf" required="true" label="cpf" requiredMessage="Por Gentileza , digite seu CPF!"/>
+
+                        <h:outputLabel for="senha" value="Senha: " />  
+                        <p:password value=""   
+                                       id="senha" required="true" label="senha" requiredMessage="Por Gentileza , digite sua Senha!"/>  
+
+                        <f:facet name="footer">                        
+                        	<div style="float: left;"><h:graphicImage library="images" name="logo.png" width="40" height="40" /></div>
+                            <div style="float: right;"><p:commandButton value="Entrar" actionListener="" icon="ui-icon-check" 
+                            					style="margin:0" update="msgs" oncomplete="handleLoginRequest(xhr, status, args)"></p:commandButton>
+                            					<p:commandButton icon="ui-icon-gear" action="#{controleLogin.configure}" rendered="#{initParam['sce.admin.ACTIVE'] == 'true'}"></p:commandButton>
+                            					</div>
+                            					
+                        </f:facet>  
+                    </h:panelGrid>
+                </p:panel> 
+        </h:form>
+        <script type="text/javascript">  
+    function handleLoginRequest(xhr, status, args) {  
+        if(args.validationFailed || !args.loggedIn) {  
+            jQuery('#formLogin').effect("shake", { times:5 }, 100); 
+        }   
+        else {
+            location.href = args.pagina; 
+        }  
+    }  
+
+        </script>  
+     </ui:define>
+</ui:composition>
