@@ -25,6 +25,7 @@ public class UsuarioRN {
 		Integer id = usuario.getId();
 		if(id==null || id==0){
 			//todo usuario novo deve ser criado ativo
+			usuario.getPermissao().add("ROLE_SOLICITANTE");
 			usuario.setAtivo(true);
 			this.usuarioDao.salvar(usuario);
 		}else{

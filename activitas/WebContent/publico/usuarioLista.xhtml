@@ -41,12 +41,15 @@
         	<p:commandLink action="#{usuarioBean.atribuiPermissao(usuario , 'ROLE_SOLICITANTE')}" title="Permissão Solicitante"
         	styleClass="ui-icon ui-icon-person">
         	</p:commandLink>
+        	<h:outputText value="1" rendered="#{usuario.permissao.contains('ROLE_SOLICITANTE')}"/>
         	<p:commandLink action="#{usuarioBean.atribuiPermissao(usuario , 'ROLE_EXECUTOR')}" title="Permissão Executor"
         	styleClass="ui-icon ui-icon-wrench">
         	</p:commandLink>
+        	<h:outputText value="1" rendered="#{usuario.permissao.contains('ROLE_EXECUTOR')}"/>
         	<p:commandLink action="#{usuarioBean.atribuiPermissao(usuario , 'ROLE_ADMINISTRADOR')}" title="Permissão Administrador"
         	styleClass="ui-icon ui-icon-key">
         	</p:commandLink>
+        	<h:outputText value="1" rendered="#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}"/>
         </p:column>
         
         <p:column>
