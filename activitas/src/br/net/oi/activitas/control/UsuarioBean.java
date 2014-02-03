@@ -7,12 +7,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import org.springframework.util.DigestUtils;
+
 import br.net.oi.activitas.model.Usuario;
 import br.net.oi.activitas.regras.UsuarioRN;
 @ManagedBean(name="usuarioBean")
 @RequestScoped
 public class UsuarioBean {
 	private Usuario usuario = new Usuario();
+	private String senhaCriptografada;
 	private String confirmarSenha;
 	private List<Usuario> lista;
 	public List<Usuario> getLista() {
@@ -47,22 +50,33 @@ public class UsuarioBean {
 			this.usuario.setDepartamento(usuarioLogado.getDepartamento());
 		}
 		FacesContext context = FacesContext.getCurrentInstance();
+
 		String senha = this.usuario.getSenha();
-		if(!senha.equals(this.confirmarSenha)){
+		if (senha != null &&
+	            senha.trim().length() > 0  &&
+	            !senha.equals(this.confirmarSenha)) {
 			FacesMessage facesMessage = new FacesMessage("A senha n‹o foi confirmada corretamente");
 			context.addMessage(null, facesMessage);
 			return null;
 		}
+		
+		if (senha != null && senha.trim().length() == 0) {
+			this.usuario.setSenha(this.senhaCriptografada);
+		} else {
+			String senhaCripto = DigestUtils.md5DigestAsHex(senha.getBytes());
+			this.usuario.setSenha(senhaCripto);
+		}
+
 		UsuarioRN usuarioRN = new UsuarioRN();
-		//aqui vai o usuario logado
-		//temporariamente ser‡ o usuario 1
 		usuarioRN.salvar(this.usuario);
+		
 		FacesMessage facesMessage = new FacesMessage("Usu‡rio "+this.usuario.getLogin()+" salvo com sucesso!");
 		context.addMessage(null, facesMessage);
 		return "usuarioSucesso";
 	}
 	public String editar(){
-		this.confirmarSenha = this.usuario.getSenha();
+		//this.confirmarSenha = this.usuario.getSenha();
+		this.senhaCriptografada = this.usuario.getSenha();
 		return "usuario";
 	}
 	public String excluir(){
@@ -82,5 +96,11 @@ public class UsuarioBean {
 			permissoes.add(permissao);
 		}
 		return null;
+	}
+	public String getSenhaCriptografada() {
+		return senhaCriptografada;
+	}
+	public void setSenhaCriptografada(String senhaCriptografada) {
+		this.senhaCriptografada = senhaCriptografada;
 	}
 }

@@ -13,15 +13,15 @@
 		Motivo: #{SPRING_SECURITY_LAST_EXCEPTION}
 	</h:panelGroup>
 		<!-- loginPanelStyle -->
-		<form action="#{request.contextPath}/j_spring_security_check" class="loginPanelStyle">
+		<form action="#{request.contextPath}/j_spring_security_check" class="loginPanelStyle" method="post">
 			<p:panel header="Activitas">
 				<h:panelGrid columns="2" cellpadding="5">
-					<h:outputLabel for="login" value="Usuário: " />
+					<h:outputLabel for="j_username" value="Usuário: " />
 					<p:inputText value="" id="j_username" required="true" label="Login"
 						requiredMessage="Por Gentileza , digite seu Login!" />
 
-					<h:outputLabel for="senha" value="Senha: " />
-					<p:password value="" id="j_password" required="true" label="senha"
+					<h:outputLabel for="j_password" value="Senha: " />
+					<p:password value="" id="j_password" required="true" label="Senha"
 						requiredMessage="Por Gentileza , digite sua Senha!" />
 						
 					<p:selectBooleanCheckbox id="_spring_security_remember_me" value="Lembrar Usuário"/>Lembrar Usuário

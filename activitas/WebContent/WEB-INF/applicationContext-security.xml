@@ -15,9 +15,10 @@
 </http>	
 <authentication-manager>
 	<authentication-provider>
+		<password-encoder hash="md5"/>
 		<jdbc-user-service data-source-ref="activitasDataSource"
-		authorities-by-username-query="SELECT u.login , p.permissao FROM usuario u , usuario_permissao p WHERE u.codigo = p.usuario AND u.login = ?"
-		users-by-username-query="SELECT login , senha , ativo FROM usuario WHERE login = ?"/>
+		authorities-by-username-query="SELECT u.login , p.permissao FROM Usuario u , usuario_permissao p WHERE u.id = p.usuario AND u.login = ?"
+		users-by-username-query="SELECT login , senha , ativo FROM Usuario WHERE login = ?"/>
 	</authentication-provider>
 </authentication-manager>
 </b:beans>

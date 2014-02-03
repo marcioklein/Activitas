@@ -29,6 +29,7 @@
   		</p:column>
   		<p:column colspan="3">
     		<p:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" label="Nome" size="65" requiredMessage="Por favor,digite o nome"/>
+    		<h:inputHidden value="#{usuarioBean.senhaCriptografada}"/>
     	</p:column>
   	</p:row>
   	
@@ -73,13 +74,14 @@
   		<p:column>
   			<p:password id="senha" value="#{usuarioBean.usuario.senha}"  match="confirmarSenha" feedback="true" label="Senha"  
                         promptLabel="Entre com a senha" weakLabel="Fraca"  
-                        goodLabel="Normal" strongLabel="Forte" />
+                        goodLabel="Normal" strongLabel="Forte" required="#{empty contextoBean.usuarioLogado}" redisplay="false"/>
   		</p:column>
   		<p:column>
   			<h:outputLabel for="confirmarSenha" value="Senha: *" /> 
   		</p:column>
   		<p:column>
-  			<p:password id="confirmarSenha" value="#{usuarioBean.confirmarSenha}" required="true" label="Confirmar Senha"/>
+  			<p:password id="confirmarSenha" value="#{usuarioBean.confirmarSenha}" required="#{empty contextoBean.usuarioLogado}" label="Confirmar Senha"
+  			redisplay="false"/>
   		</p:column>
   	</p:row>
   	   

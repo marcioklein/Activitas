@@ -13,13 +13,20 @@
 	<h:form id="formMenu">
 		<p:growl id="messages" />
 		Usuário logado #{request.remoteUser}
-		<br/>
-		<p:commandButton action="#{usuarioBean.novo}" value="Usuarios" ajax="false" icon="ui-icon-person"/>
+				<sec:ifAnyGranted roles="ROLE_SOLICITANTE">
+			Solicitante
+			<br/>
+			<p:commandButton action="#{demandaBean.novo}" value="Demandas" ajax="false" icon="ui-icon-person"/>
+		</sec:ifAnyGranted>
+		<sec:ifAnyGranted roles="ROLE_EXECUTOR">Executor</sec:ifAnyGranted>
+		<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+			Administrador
+			<br/>
+			<p:commandButton action="#{usuarioBean.novo}" value="Usuarios" ajax="false" icon="ui-icon-person"/>	
+		</sec:ifAnyGranted>
 		<br/>
 		<p:commandButton onclick="document.location='#{request.contextPath}/j_spring_security_logout'" value="Sair" ajax="false" icon="ui-icon-person"></p:commandButton>
-		<sec:ifAnyGranted roles="ROLE_SOLICITANTE">Solicitante</sec:ifAnyGranted>
-		<sec:ifAnyGranted roles="ROLE_EXECUTOR">Executor</sec:ifAnyGranted>
-		<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">Administrador</sec:ifAnyGranted>
+		
 		<!-- <p:menu style="width:200px">
 		<p:submenu label="Ações" icon="ui-icon-gear">  
             <p:menuitem value="Alterar Senha" actionListener="#{controleMenu.telaAltSenhaca}" ajax="false" icon="ui-icon-person"/>
