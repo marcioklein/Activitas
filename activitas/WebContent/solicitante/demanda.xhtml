@@ -1,0 +1,49 @@
+<ui:composition template="/templates/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<ui:define name="content">
+	  
+<h1>Registro de Demandas</h1>
+<hr />
+<h:form id="edicao">
+	<h:inputHidden value="#{demandaBean.demanda.id}"></h:inputHidden>
+	<p:panel id="panel">
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<p:panelGrid columns="2">
+		<f:facet name="header">
+			Demanda
+		</f:facet>
+			<h:outputLabel for="demanda" value="Demanda"/>
+			<p:inputText id="demanda" required="true" value="#{demandaBean.demanda.demanda}"/>
+			<h:outputLabel for="descricao" value="Descrição"/>
+			<p:inputTextarea cols="30" rows="5"  id="descricao" required="true" value="#{demandaBean.demanda.descricao}"/>
+			<h:outputLabel for="sistema" value="Sistema"/>	
+			<p:selectOneMenu effect="fade">  
+            	<f:selectItem itemLabel="Selecione..." />  
+            	<f:selectItems value="#{sistemaBean.lista}" var="sistema" itemLabel="#{sistema.sistema}" itemValue="#{sistema.id}"/>  
+        	</p:selectOneMenu>		
+			<h:outputLabel for="dataRequerida" value="Data Requerida"/>	
+			<p:calendar value="#{demandaBean.demanda.dataRequerida}" id="dataRequerida" required="true"/> 
+			<h:outputLabel for="grupo" value="Designar para"/>	
+			<p:selectOneMenu effect="fade">  
+            	<f:selectItem itemLabel="Selecione..." />  
+            	<f:selectItems value="#{grupoBean.listaPorDepartamento}" var="grupo" itemLabel="#{grupo.grupo}" itemValue="#{grupo.id}"/>  
+        	</p:selectOneMenu>
+		<f:facet name="footer">
+			<p:commandButton actionListener="#{demandaBean.salvar}" update="@form" value="Salvar" icon="ui-icon-check" style="margin:0"/>
+		</f:facet>
+		</p:panelGrid>
+	</p:panel>
+</h:form>
+<h:form id="listagem">
+	<p:dataTable var="demanda" value="#{demandaBean.lista}" rendered="#{!empty demandaBean.lista}">
+	</p:dataTable>
+</h:form>
+<hr />
+</ui:define>
+</ui:composition>
