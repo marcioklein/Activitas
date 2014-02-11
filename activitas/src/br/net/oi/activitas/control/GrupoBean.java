@@ -20,10 +20,17 @@ public class GrupoBean {
 	private List<Grupo> listaPorDepartamento = null;
 
 	public List<Grupo> getLista() {
+		//GrupoRN grupoRN = new GrupoRN();
+		//ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		//Departamento departamento;
+		//departamento = contextoBean.getDepartamento();
+		//System.out.println("xxx27");
+		//this.listaPorDepartamento = grupoRN.listarPorDepartamento(contextoBean.getDepartamento());
 		if(this.lista==null){
 			GrupoRN grupoRN = new GrupoRN();
 			this.lista = grupoRN.listar();
 		}
+		System.out.println("xxx");
 		return this.lista;
 	}
 	
@@ -43,7 +50,11 @@ public class GrupoBean {
 		if(this.listaPorDepartamento==null){
 			GrupoRN grupoRN = new GrupoRN();
 			ContextoBean contextoBean = ContextoUtil.getContextoBean();
-			this.listaPorDepartamento = grupoRN.listarPorDepartamento(contextoBean.getDepartamento());
+			if(contextoBean!=null){
+				this.listaPorDepartamento = grupoRN.listarPorDepartamento(contextoBean.getDepartamento());
+			}else{
+				System.out.println("falha ao capturar contexto");
+			}
 		}
 		return this.listaPorDepartamento;
 	}

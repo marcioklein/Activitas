@@ -12,6 +12,7 @@
 <hr />
 <h:form id="edicao">
 	<h:inputHidden value="#{demandaBean.demanda.id}"></h:inputHidden>
+	<div class="#{contextoBean.departamento}"></div>
 	<p:panel id="panel">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 		<p:panelGrid columns="2">
@@ -23,16 +24,14 @@
 			<h:outputLabel for="descricao" value="Descrição"/>
 			<p:inputTextarea cols="30" rows="5"  id="descricao" required="true" value="#{demandaBean.demanda.descricao}"/>
 			<h:outputLabel for="sistema" value="Sistema"/>	
-			<p:selectOneMenu effect="fade">  
-            	<f:selectItem itemLabel="Selecione..." />  
-            	<f:selectItems value="#{sistemaBean.lista}" var="sistema" itemLabel="#{sistema.sistema}" itemValue="#{sistema.id}"/>  
+			<p:selectOneMenu value="#{demandaBean.demanda.sistema}" effect="fade" converter="sistemaConverter">   
+            	<f:selectItems value="#{sistemaBean.listaPorDepartamento}" var="sistema" itemLabel="#{sistema.sistema}" itemValue="#{sistema}"/>  
         	</p:selectOneMenu>		
 			<h:outputLabel for="dataRequerida" value="Data Requerida"/>	
 			<p:calendar value="#{demandaBean.demanda.dataRequerida}" id="dataRequerida" required="true"/> 
 			<h:outputLabel for="grupo" value="Designar para"/>	
-			<p:selectOneMenu effect="fade">  
-            	<f:selectItem itemLabel="Selecione..." />  
-            	<f:selectItems value="#{grupoBean.listaPorDepartamento}" var="grupo" itemLabel="#{grupo.grupo}" itemValue="#{grupo.id}"/>  
+			<p:selectOneMenu value="#{demandaBean.demanda.grupo}" effect="fade" converter="grupoConverter">    
+            	<f:selectItems value="#{grupoBean.listaPorDepartamento}" var="grupo" itemLabel="#{grupo.grupo}" itemValue="#{grupo}"/>  
         	</p:selectOneMenu>
 		<f:facet name="footer">
 			<p:commandButton actionListener="#{demandaBean.salvar}" update="@form" value="Salvar" icon="ui-icon-check" style="margin:0"/>

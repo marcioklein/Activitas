@@ -6,12 +6,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import br.net.oi.activitas.model.Demanda;
+import br.net.oi.activitas.model.Sistema;
 
 @ManagedBean(name="demandaBean")
 @RequestScoped
 public class DemandaBean {
 	private Demanda demanda = new Demanda();
 	private List<Demanda> lista = null;
+	private Sistema selectedSistema;
 	
 	public void salvar(){
 		
@@ -37,5 +39,11 @@ public class DemandaBean {
 	}
 	public void setDemanda(Demanda demanda) {
 		this.demanda = demanda;
+	}
+	public Sistema getSelectedSistema() {
+		return selectedSistema;
+	}
+	public void setSelectedSistema(Sistema selectedSistema) {
+		this.selectedSistema = selectedSistema;
 	}
 }

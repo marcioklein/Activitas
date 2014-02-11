@@ -3,6 +3,7 @@ package br.net.oi.activitas.regras;
 import java.util.List;
 
 import br.net.oi.activitas.dao.SistemaDao;
+import br.net.oi.activitas.model.Departamento;
 import br.net.oi.activitas.model.Sistema;
 import br.net.oi.activitas.util.DaoFactory;
 
@@ -22,5 +23,8 @@ public class SistemaRN {
 	}
 	public List<Sistema> listar(){
 		return this.sistemaDao.listar();
+	}
+	public List<Sistema> listarPorDepartamento(Departamento departamento){
+		return this.sistemaDao.listarPorDepartamento(departamento);
 	}
 }
