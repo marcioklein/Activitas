@@ -18,6 +18,7 @@ public class GrupoConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
+		if(value.equals("Selecione..."))return null;
 		if(value != null && value.trim().length()>0){
 			Integer codigo = Integer.valueOf(value);
 			try{
@@ -32,7 +33,7 @@ public class GrupoConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object object) {
-		if(object != null){
+		if(object != null &&(object instanceof Grupo)){
 			Grupo grupo = (Grupo)object;
 			return grupo.getId().toString();
 		}

@@ -14,7 +14,7 @@
 	<h:inputHidden value="#{demandaBean.demanda.id}"></h:inputHidden>
 	<div class="#{contextoBean.departamento}"></div>
 	<p:panel id="panel">
-		<p:growl id="growl" showDetail="true" sticky="true" />
+		<p:growl id="growl" showDetail="true" sticky="false" />
 		<p:panelGrid columns="2">
 		<f:facet name="header">
 			Demanda
@@ -25,24 +25,45 @@
 			<p:inputTextarea cols="30" rows="5"  id="descricao" required="true" value="#{demandaBean.demanda.descricao}"/>
 			<h:outputLabel for="sistema" value="Sistema"/>	
 			<p:selectOneMenu value="#{demandaBean.demanda.sistema}" effect="fade" converter="sistemaConverter">   
+				<f:selectItem itemLabel="Selecione..." itemValue="" />
             	<f:selectItems value="#{sistemaBean.listaPorDepartamento}" var="sistema" itemLabel="#{sistema.sistema}" itemValue="#{sistema}"/>  
         	</p:selectOneMenu>		
 			<h:outputLabel for="dataRequerida" value="Data Requerida"/>	
 			<p:calendar value="#{demandaBean.demanda.dataRequerida}" id="dataRequerida" required="true"/> 
 			<h:outputLabel for="grupo" value="Designar para"/>	
 			<p:selectOneMenu value="#{demandaBean.demanda.grupo}" effect="fade" converter="grupoConverter">    
+				<f:selectItem itemLabel="Selecione..." itemValue="" />
             	<f:selectItems value="#{grupoBean.listaPorDepartamento}" var="grupo" itemLabel="#{grupo.grupo}" itemValue="#{grupo}"/>  
         	</p:selectOneMenu>
 		<f:facet name="footer">
-			<p:commandButton actionListener="#{demandaBean.salvar}" update="@form" value="Salvar" icon="ui-icon-check" style="margin:0"/>
+			<p:commandButton actionListener="#{demandaBean.salvar}" update="@form demandaTable" value="Salvar" icon="ui-icon-check" style="margin:0"/>
 		</f:facet>
 		</p:panelGrid>
 	</p:panel>
+	<h1>Minhas Demandas</h1>
+<p:dataTable id="demandaTable" var="demanda" value="#{demandaBean.listaPorUsuario}">
+	<p:column headerText="ID">  
+           <h:outputText value="#{demanda.id}" />  
+    </p:column>
+    <p:column headerText="Demanda">  
+           <h:outputText value="#{demanda.demanda}" />  
+    </p:column>
+    <p:column headerText="Status">  
+           <h:outputText value="#{demanda.status}" />  
+    </p:column>
+    <p:column headerText="Abertura">  
+           <h:outputText value="#{demanda.dataAbertura}" />  
+    </p:column>
+    <p:column headerText="Requerida">  
+           <h:outputText value="#{demanda.dataRequerida}" />  
+    </p:column>
+</p:dataTable>
+
 </h:form>
 <h:form id="listagem">
-	<p:dataTable var="demanda" value="#{demandaBean.lista}" rendered="#{!empty demandaBean.lista}">
-	</p:dataTable>
 </h:form>
+
 <hr />
+
 </ui:define>
 </ui:composition>

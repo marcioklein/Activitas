@@ -32,7 +32,6 @@ public class ContextoBean {
 		this.usuarioLogado = usuarioLogado;
 	}
 	public Departamento getDepartamento() {
-		System.out.println("xxx35");
 		if(this.departamento==null){
 			Usuario usuario = this.getUsuarioLogado();
 			DepartamentoRN departamentoRN = new DepartamentoRN();
