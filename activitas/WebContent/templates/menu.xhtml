@@ -10,54 +10,51 @@
 	<title>Menu</title>
 </h:head>
 <h:body>
-	<h:form id="formMenu">
-		<p:growl id="messages" />
-		Usuário logado #{request.remoteUser}
-				<sec:ifAnyGranted roles="ROLE_SOLICITANTE">
-			Solicitante
-			<br/>
-			<p:commandButton action="#{demandaBean.novo}" value="Demandas" ajax="false" icon="ui-icon-person"/>
-		</sec:ifAnyGranted>
-		<sec:ifAnyGranted roles="ROLE_EXECUTOR">Executor</sec:ifAnyGranted>
-		<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
-			Administrador
-			<br/>
-			<p:commandButton action="#{usuarioBean.novo}" value="Usuarios" ajax="false" icon="ui-icon-person"/>	
-		</sec:ifAnyGranted>
-		<br/>
-		<p:commandButton onclick="document.location='#{request.contextPath}/j_spring_security_logout'" value="Sair" ajax="false" icon="ui-icon-person"></p:commandButton>
-		
-		<!-- <p:menu style="width:200px">
-		<p:submenu label="Ações" icon="ui-icon-gear">  
-            <p:menuitem value="Alterar Senha" actionListener="#{controleMenu.telaAltSenhaca}" ajax="false" icon="ui-icon-person"/>
-        </p:submenu> 
-        <p:submenu label="Cadastro" icon="ui-icon-gear">  
-            <p:menuitem value="Cadastro de Usuário" actionListener="#{controleMenu.telaUsuario}" ajax="false" icon="ui-icon-disk"/> 
-            <p:menuitem value="Cadastro de Setor" actionListener="#{controleMenu.telaSetor}" ajax="false" icon="ui-icon-disk" /> 
-        </p:submenu> 
-        <p:submenu label="Pesquisa" icon="ui-icon-gear">  
-            <p:menuitem value="Visualizar Compras" actionListener="#{controleMenu.telaCompraca}" ajax="false" icon="ui-icon-disk"/> 
-            <p:menuitem value="Visualizar Solicitações" actionListener="#{controleMenu.telaSolicitacaoca}" ajax="false" icon="ui-icon-disk" /> 
-        </p:submenu>
-        <p:submenu label="Relatório" icon="ui-icon-gear">  
-            <p:menuitem value="Emitir Relatório de Consumo por item" action="#{controleRelatorio.relatorioConsumoMedio}" ajax="false" icon="ui-icon-disk"/> 
-            <p:menuitem value="Emitir relatório de Estoque Mínimo" action="#{controleRelatorioEstoqueMinimo.relatorioEstoqueMinimo}" ajax="false" icon="ui-icon-disk" /> 
-            <p:menuitem value="Emitir Relatório de Distribuição" action="#{controleRelatorio.relatorioDistribuicao}" ajax="false" icon="ui-icon-disk"/>
-            <p:menuitem value="Emitir Relatório de Distribuição" action="#{controleMenu.telaRelDistca}" ajax="false" icon="ui-icon-disk"/>
-        </p:submenu> 
-        <p:submenu label="Sair" icon="ui-icon-gear"> 
-	        <p:menuitem value="Sair" actionListener="#{controleLogin.logoff}"
-					oncomplete=" handleLogOutRequest(xhr, status, args);"
-					icon="ui-icon-power" />
-		</p:submenu>
-    </p:menu>  -->
-	</h:form>
-	<script type="text/javascript">
-		function handleLogOutRequest(xhr, status, args) {
-			if (args.loggedOut) {
-				location.href = args.pagina;
-			}
-		}
-	</script>
+<h1>
+		<h:graphicImage library="images" name="logo.png" height="100" width="100"/>
+		ACTIVITAS</h1>
+		<!-- Static navbar -->
+		<h:form>
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Activitas</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+            <sec:ifAnyGranted roles="ROLE_SOLICITANTE">
+            	<li><h:commandLink action="#{demandaBean.novo}" value="Demandas"/></li>
+            </sec:ifAnyGranted>
+              
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="./">Default</a></li>
+              <li><a href="../navbar-static-top/">Static top</a></li>
+              <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div>
+      </h:form>
 </h:body>
 </html>

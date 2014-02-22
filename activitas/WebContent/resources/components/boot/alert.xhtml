@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:composite="http://java.sun.com/jsf/composite">
+<composite:interface>
+	<composite:attribute name="dismissable" displayName="dismissable" type="java.lang.Boolean" default="true"/>
+	<composite:attribute name="message" displayName="message" type="java.lang.String"/>
+	<composite:attribute name="type" displayName="type" default="info"></composite:attribute>
+</composite:interface>
+<composite:implementation>
+<c:choose>
+	<c:when test="#{cc.attrs.type=='success' or cc.attrs.type=='info' or cc.attrs.type=='warning' or cc.attrs.type=='danger'}">
+		<c:choose>
+			<c:when test="#{cc.attrs.dismissable==true}">
+				<div class="alert alert-#{cc.attrs.type} alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				#{cc.attrs.message}
+				<composite:insertChildren/>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="alert alert-#{cc.attrs.type}">
+				#{cc.attrs.message}
+				<composite:insertChildren/>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</c:when>
+	<c:otherwise>
+	boot:alert - Type attribute must be success , info , warning or danger
+	</c:otherwise>
+</c:choose>
+
+</composite:implementation>
+</html>

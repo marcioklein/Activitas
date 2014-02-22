@@ -1,17 +1,19 @@
-<ui:composition template="/templates/layout.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:boot="http://java.sun.com/jsf/composite/components/boot"
+	  xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<boot:head title="A+"/>
+<boot:body>
 	
-<ui:define name="content">
-	  
-<h1>Bem vindo</h1>
-<hr />
-Usuário logado #{request.remoteUser}
-
-<hr />
-</ui:define>
-</ui:composition>
+		<ui:include src="/templates/menu.xhtml"/>
+		
+      	<boot:jumbotron>
+		Bem Vindo #{request.remoteUser}
+		</boot:jumbotron>
+</boot:body>
+</html>
